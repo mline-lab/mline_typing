@@ -107,9 +107,8 @@ function setvar() {
   gauge = 0;
   //アクションフラグクリア
   deadly = 0;
-  //
+  //出題文字列クリア
   wordChars = [];
-
 
   //スコア表示クリア
   score_area.textContent = "0000";
@@ -154,7 +153,6 @@ function space_start() {　 //スペースキー打鍵禁止
     messageArea.textContent = startcount;
     setTimeout("space_start()", 1000);
   }
-
 }
 
 /* -------------------- ゲームスタート処理 -------------------- */
