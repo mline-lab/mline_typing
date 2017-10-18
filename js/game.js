@@ -1,17 +1,37 @@
+/* -------------------- common定数 -------------------- */
+//プレイ中
+var NOWPLAY      = 1;
+//非プレイ
+var STOPPLAY     = 0;
+//許可
+var ENABLE       = 1;
+//禁止
+var DISABLE      = 0;
+//タイムアップ
+var TIMEUP       = 0;
+//1秒タイムアウト
+var TIMEOUT_1SEC = 1000;
+//0クリア値
+var SET_CLR      = 0;
+//正当１字スコアアップ値
+var CHAR_SCORE   = 3;
+//単語スコアアップ乗数
+var WORD_SCORE   = 8;
+
 /* -------------------- 設定用定数 -------------------- */
 // 制限時間設定用定数
-var timeLimit = 60;
+var TIMELIMIT      = 10;
 //ゲーム開始カウントダウン設定用定数
 // -2の数値がカウントされる。
-var gameStartCount = 5;
+var GAMESTARTCOUNT = 5;
 
 /* -------------------- フラグ用変数 -------------------- */
 //ゲーム中フラグ
 // ゲーム中:1 非ゲーム中:0
-var game_flag = 0;
+var game_flag  = STOPPLAY;
 //スペースキー打鍵許可フラグ
 //許可:1 禁止:0
-var space_flag = 0;
+var space_flag = DISABLE;
 
 /* -------------------- 出題文字列用変数 -------------------- */
 //3要素の配列。0番目に『文全体のローマ字』、
@@ -94,19 +114,19 @@ function getCSV_hira_File() {
 /* -------------------- 初期化処理 -------------------- */
 function setvar() {
   //ゲームスタートカウント初期化
-  startcount = gameStartCount;
+  startcount = GAMESTARTCOUNT;
   //ゲーム制限時間セット
-  timeCount = timeLimit;
+  timeCount = TIMELIMIT;
   //スコアクリア
-  score = 0;
+  score = SET_CLR;
   //ミスカウントクリア
-  missCount = 0;
+  missCount = SET_CLR;
   //打ち切った数クリア
-  downcount = 0;
+  downcount = SET_CLR;
   //ノーミスゲージクリア
-  gauge = 0;
+  gauge = SET_CLR;
   //アクションフラグクリア
-  deadly = 0;
+  deadly = SET_CLR;
   //出題文字列クリア
   wordChars = [];
 
@@ -132,18 +152,18 @@ function onStartButtonClick() {
   //メッセージエリア文字列クリア
   messageArea.textContent = "スペースキーでスタート";
   //スペースキー打鍵許可
-  space_flag = 1;
+  space_flag = ENABLE;
 }
 
 /* -------------------- スペースキー打鍵時処理 -------------------- */
 function space_start() {　 //スペースキー打鍵禁止
-  space_flag = 0;
+  space_flag = DISABLE;
   //カウントダウン
   startcount--;
   //Redy表示
   if (startcount == 4) {
     messageArea.textContent = "Ready...";
-    setTimeout("space_start()", 1000);
+    setTimeout("space_start()", TIMEOUT_1SEC);
     //ゲームスタート
   } else if (startcount == 0) {
     messageArea.textContent = "GO!";
@@ -151,39 +171,39 @@ function space_start() {　 //スペースキー打鍵禁止
     //カウントダウン
   } else {
     messageArea.textContent = startcount;
-    setTimeout("space_start()", 1000);
+    setTimeout("space_start()", TIMEOUT_1SEC);
   }
 }
 
 /* -------------------- ゲームスタート処理 -------------------- */
 function startTyping() {
   //ゲーム中フラグ
-  game_flag = 1;
+  game_flag = NOWPLAY;
   //出題文字列表示
   nextWord();
   //カウントダウン開始
   countDown();
-  timer1Sec = setInterval("countDown()", 1000);
+  timer1Sec = setInterval("countDown()", TIMEOUT_1SEC);
 }
 
 /* -------------------- 出題表示処理 -------------------- */
 function nextWord() {
-  if (timeCount >= 0) {
+  if (timeCount >= TIMEUP) {
     //タイピング処理用変数クリア
-    tableichi = 0;
-    ichi = 0;
+    tableichi = SET_CLR;
+    ichi = SET_CLR;
     inputtype = "";
     nyuuryoku = "";
     nowtype = "";
     //文字先頭位置クリア
-    charIndex = 0;
+    charIndex = SET_CLR;
     //リストからランダムに文字列取得
     var random = Math.floor(Math.random() * (wordList_hiragana.length - 1));
     //画面へ表示
     wordArea_hiragana.textContent = wordList_hiragana[random];
     wordArea_jp.textContent = wordList_jp[random];
     //ひらがなを変換
-    worddata = townro_machange(wordList_hiragana[random], henkan);
+    worddata = ro_machange(wordList_hiragana[random], henkan);
     ro_ma = worddata[0];
     jword = worddata[1];
     word = worddata[2];
@@ -198,21 +218,16 @@ function nextWord() {
 
 /* -------------------- 制限時間カウントダウン -------------------- */
 function countDown() {
-  //終了遷移
-  if (timeCount <= -1) {
-    //終了処理
-    stopTyping();
-    return;
-  //タイムアップ処理
-  } else if (timeCount == 0) {
-    typeArea.textContent = "";
-    typeArea2.textContent = "";
-    wordArea_hiragana.textContent = "";
-    wordArea_jp.textContent = "タイムアップ";
+  if (game_flag == NOWPLAY) {
+    if (timeCount == TIMEUP) {
+      //ゲーム終了処理
+      stopTyping();
+    } else {
+      //カウントダウン
+      time_area.textContent = timeCount + " sec.";
+      timeCount--;
+    }
   }
-  //カウントダウン
-  time_area.textContent = timeCount + " sec.";
-  timeCount--;
 }
 
 /* -------------------- ゲーム終了処理 -------------------- */
@@ -220,15 +235,18 @@ function stopTyping() {
   //カウントストップ
   clearInterval(timer1Sec);
   //ゲーム中フラグOFF
-  game_flag = 0;
+  game_flag = STOPPLAY;
+  typeArea.textContent = "";
+  typeArea2.textContent = "";
+  wordArea_hiragana.textContent = "";
+  wordArea_jp.textContent = "タイムアップ";
+  time_area.textContent = "TIMEUP";
   //ストップ処理遷移待ちタイムアウト
-  setTimeout("stop_refresh()", 1010);
+  setTimeout("stop_refresh()", TIMEOUT_1SEC);
 }
 
 /* -------------------- ゲーム終了時処理 -------------------- */
 function stop_refresh() {
-  timeCount = 0;
-  time_area.textContent = timeCount + " sec.";
   //成績表示
   messageArea.textContent = "Score: " + score + "■倒した数" + downcount + "■ミスタイプ数" + missCount;
   //入力文字表示クリア
@@ -245,7 +263,6 @@ function stop_refresh() {
 function esc() {
   //カウントストップ
   clearInterval(timer1Sec);
-  game_flag = 0;
   //入力文字表示クリア
   typeArea.textContent = "";
   typeArea2.textContent = "";
@@ -307,7 +324,7 @@ function moziHenkan(e) {
   var tempseikai = seikaisuu;
 
   //入力方法自動判別関数呼び出し、引数にはeと先ほど作ったdata配列を渡す。
-  townmojiretuhenkan(e, data);
+  mojiretuhenkan(e, data);
 
   //配列データを個々のデータに入れ直す
   jword = data[0];
@@ -321,18 +338,20 @@ function moziHenkan(e) {
   missCount = data[8];
   wordseikaisuu = data[9];
   henkan = data[10];
-  townro_machange
   ro_ma = data[11];
+  keysettei = data[12];
   shiftdown = data[13];
+  keydowntable1 = data[14];
+  keydowntable2 = data[15];
 
   //ゲーム中かつ制限時間内か判定
-  if (game_flag == 1 && timeCount >= 0) {
+  if (game_flag == NOWPLAY && timeCount >= TIMEUP) {
     //正当入力時処理
     if (seikaisuu != tempseikai) {
       hantei();
     //ミス入力時処理
     } else {
-      gauge = 0;
+      gauge = SET_CLR;
       missCount++;
     }
   }
@@ -341,9 +360,9 @@ function moziHenkan(e) {
 /* -------------------- 正当文字入力時処理 -------------------- */
 function hantei() {
   //ゲーム中か判定
-  if (game_flag == 1) {
+  if (game_flag == NOWPLAY) {
     //スコアカウントアップ
-    score = score + 3;
+    score = score + CHAR_SCORE;
     //スコア表示
     score_area.textContent = ('000' + score).slice(-4);
     //文字先頭位置カウントアップ
@@ -362,7 +381,7 @@ function hantei() {
 
     //全文字打鍵時処理
     if (tableichi >= word.length) {
-      score = score + (word.length * 8);
+      score = score + (word.length * WORD_SCORE);
       score_area.textContent = ('000' + score).slice(-4);
       downcount++;
       //0.2秒間空白文字を表示してから次の文字を表示する。
@@ -380,8 +399,8 @@ function hantei() {
 /* -------------------- シフトキー入力チェック -------------------- */
 document.onkeyup = function(e) {
   var temp;
-  if ((temp = towncheckshift(e)) === 0) {
-    shiftdown = 0;
+  if ((temp = checkshift(e)) === 0) {
+    shiftdown = SET_CLR;
   }
 }
 
@@ -390,15 +409,16 @@ document.onkeydown = function(e) {
   var keyStr;
 
   if (e.keyCode == 32) {
-    if (space_flag == 1) {
+    if (space_flag == ENABLE) {
       space_start();
     }
   } else if (e.keyCode == 27) {
-    if (game_flag == 1) {
-      setTimeout(esc(), 1010);
+    if (game_flag == NOWPLAY) {
+      game_flag = STOPPLAY;
+      esc();
     }
   } else {
-    if (game_flag == 1) {
+    if (game_flag == NOWPLAY) {
       moziHenkan(e);
     }
   }

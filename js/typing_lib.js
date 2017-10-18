@@ -3,7 +3,7 @@ var wordseikaisuu = 0;
 var seikaisuu = 0;
 var keysettei = 1;
 
-function townro_machange(sellect, henkan) {
+function ro_machange(sellect, henkan) {
   var ro_ma = "";
   var nowword = "";
   var nextword = "";
@@ -145,21 +145,21 @@ function townro_machange(sellect, henkan) {
   return tempdata;
 }
 
-function towncheckshift(e) {
+function checkshift(e) {
   if (navigator.userAgent.indexOf("Chrome") != -1) {
-    var burauza = "Chrome";
+    var browser = "Chrome";
   } else if (navigator.userAgent.indexOf("Safari") != -1) {
-    var burauza = "Safari";
+    var browser = "Safari";
   } else if (navigator.userAgent.indexOf("MSIE") != -1 || navigator.userAgent.indexOf("Trident") != -1) {
-    var burauza = "IE";
+    var browser = "IE";
   } else if (navigator.appName == "Netscape") {
-    var burauza = "Net";
+    var browser = "Net";
   } else if (navigator.appName == "Opera") {
-    var burauza = "Ope";
+    var browser = "Ope";
   } else {
-    var burauza = "IE";
+    var browser = "IE";
   }
-  if (burauza == "IE" || burauza == "Ope" || burauza == "Safari" || burauza == "Chrome") {
+  if (browser == "IE" || browser == "Ope" || browser == "Safari" || browser == "Chrome") {
     if (event.keyCode == 16) {
       return 0;
     }
@@ -170,22 +170,22 @@ function towncheckshift(e) {
   }
 }
 
-function townnotevent(e) {
+function notevent(e) {
   var keychi;
   if (navigator.userAgent.indexOf("Chrome") != -1) {
-    var burauza = "Chrome";
+    var browser = "Chrome";
   } else if (navigator.userAgent.indexOf("Safari") != -1) {
-    var burauza = "Safari";
+    var browser = "Safari";
   } else if (navigator.userAgent.indexOf("MSIE") != -1 || navigator.userAgent.indexOf("Trident") != -1) {
-    var burauza = "IE";
+    var browser = "IE";
   } else if (navigator.appName == "Netscape") {
-    var burauza = "Net";
+    var browser = "Net";
   } else if (navigator.appName == "Opera") {
-    var burauza = "Ope";
+    var browser = "Ope";
   } else {
-    var burauza = "IE";
+    var browser = "IE";
   }
-  if (burauza == "Net") {
+  if (browser == "Net") {
     keychi = e.which;
     if (keychi == 32) {
       return false;
@@ -202,7 +202,7 @@ function townnotevent(e) {
     } else {
       return true;
     }
-  } else if (burauza == "Ope") {
+  } else if (browser == "Ope") {
     keychi = event.keyCode;
     if (keychi == 32) {
       return false;
@@ -246,33 +246,33 @@ function townnotevent(e) {
   }
 }
 
-function townmojiretuhenkan(e, tempdata) {
+function mojiretuhenkan(e, tempdata) {
   if (navigator.userAgent.indexOf("Chrome") != -1) {
-    var burauza = "Chrome";
+    var browser = "Chrome";
   } else if (navigator.userAgent.indexOf("Safari") != -1) {
-    var burauza = "Safari";
+    var browser = "Safari";
   } else if (navigator.userAgent.indexOf("MSIE") != -1 || navigator.userAgent.indexOf("Trident") != -1) {
-    var burauza = "IE";
+    var browser = "IE";
   } else if (navigator.appName == "Netscape") {
-    var burauza = "Net";
+    var browser = "Net";
   } else if (navigator.appName == "Opera") {
-    var burauza = "Ope";
+    var browser = "Ope";
   } else {
-    var burauza = "IE";
+    var browser = "IE";
   }
   var set = 0;
 
 
   var checkKeyCode = -1;
 
-  if (burauza == "IE" || burauza == "Ope" || burauza == "Safari" || burauza == "Chrome") {
+  if (browser == "IE" || browser == "Ope" || browser == "Safari" || browser == "Chrome") {
     checkKeyCode = event.keyCode;
   } else {
     checkKeyCode = e.which;
   }
 
   var startword = tempdata[5];
-  if (burauza == "IE" || burauza == "Ope" || burauza == "Safari" || burauza == "Chrome") {
+  if (browser == "IE" || browser == "Ope" || browser == "Safari" || browser == "Chrome") {
     if (tempdata[12] == 0) {
       tempdata[5] += String.fromCharCode(event.keyCode);
       tempdata[6] = String.fromCharCode(event.keyCode);
