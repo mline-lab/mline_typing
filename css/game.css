@@ -1,0 +1,89 @@
+/* タイピングワードエリア */
+
+.font_area {
+    text-align: center;
+}
+
+#word_hiragana {
+    color: white;
+    height: 30px;
+    font-size: 0.7em;
+    line-height: 30px;
+}
+
+#word_jp {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    height: 35px;
+    font-size: 1.5em;
+    line-height: 1;
+}
+
+#type {
+    height: 40px;
+    font-size: 0.9em;
+    line-height: 40px;
+}
+
+#type_Before {
+    color: #565656;
+}
+
+#type_After {
+    color: white;
+}
+
+/* メッセージ */
+#message {
+  height: 30px;
+  margin: 0 auto;
+  color: rgb(255, 255, 255);
+  padding: .5em .75em;
+  background-color: rgb(17, 41, 65);
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .1) inset;
+}
+
+/* スコア */
+#score_area {
+    height: 30px;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+    padding: .5em .75em;
+  	background-color: rgb(17, 41, 65);
+  	border-radius: 6px;
+  	box-shadow: 2px 2px 4px rgba(0, 0, 0, .1) inset;
+}
+
+/* タイム */
+#time_area {
+  margin: 0 auto;
+  color: rgb(255, 255, 255);
+  padding: .5em .75em;
+  background-color: rgb(17, 41, 65);
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .1) inset;
+}
+
+/* キャラクター */
+#character {
+  width: 100%;
+  height: auto;
+}
+
+/* ボタン */
+.button {
+    width: 200px;
+    height: 50px;
+    background-color: #333;
+    border: 2px solid #333;
+    color: #fff;
+    line-height: 50px;
+}
+
+.button:hover {
+    background-color: #fff;
+    border-color: #59b1eb;
+    color: #59b1eb;
+}
