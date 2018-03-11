@@ -1,29 +1,29 @@
 /* -------------------- common定数 -------------------- */
 //プレイ中
-var NOWPLAY      = 1;
+const NOWPLAY      = 1;
 //非プレイ
-var STOPPLAY     = 0;
+const STOPPLAY     = 0;
 //許可
-var ENABLE       = 1;
+const ENABLE       = 1;
 //禁止
-var DISABLE      = 0;
+const DISABLE      = 0;
 //タイムアップ
-var TIMEUP       = 0;
+const TIMEUP       = 0;
 //1秒タイムアウト
-var TIMEOUT_1SEC = 1000;
+const TIMEOUT_1SEC = 1000;
 //0クリア値
-var SET_CLR      = 0;
+const SET_CLR      = 0;
 //正当１字スコアアップ値
-var CHAR_SCORE   = 3;
+const CHAR_SCORE   = 3;
 //単語スコアアップ乗数
-var WORD_SCORE   = 8;
+const WORD_SCORE   = 8;
 
 /* -------------------- 設定用定数 -------------------- */
 // 制限時間設定用定数
-var TIMELIMIT      = 10;
+const TIMELIMIT      = 10;
 //ゲーム開始カウントダウン設定用定数
 // -2の数値がカウントされる。
-var GAMESTARTCOUNT = 5;
+const GAMESTARTCOUNT = 5;
 
 /* -------------------- フラグ用変数 -------------------- */
 //ゲーム中フラグ
@@ -89,6 +89,10 @@ window.onload = function() {
   typeArea2 = document.getElementById("type_After");
   time_area = document.getElementById("time_area");
   score_area = document.getElementById("score_area");
+
+  //出題文字列CSV取得
+  getCSV_jp_File();
+  getCSV_hira_File();
 }
 
 /* -------------------- 出題文字列取得処理 -------------------- */
@@ -112,7 +116,7 @@ function getCSV_hira_File() {
 }
 
 /* -------------------- 初期化処理 -------------------- */
-function setvar() {
+function init() {
   //ゲームスタートカウント初期化
   startcount = GAMESTARTCOUNT;
   //ゲーム制限時間セット
@@ -140,23 +144,23 @@ function setvar() {
   wordArea_jp.textContent = "";
   //スタートボタン非表示
   startButton.style.visibility = "hidden";
-}
 
-/* -------------------- スタートボタンクリック時処理 -------------------- */
-function onStartButtonClick() {
-  //出題文字列CSV取得
-  getCSV_jp_File();
-  getCSV_hira_File();
-  //変数初期化処理
-  setvar();
   //メッセージエリア文字列クリア
   messageArea.textContent = "スペースキーでスタート";
+
   //スペースキー打鍵許可
   space_flag = ENABLE;
 }
 
+/* -------------------- スタートボタンクリック時処理 -------------------- */
+function onStartButtonClick() {
+  //初期化処理
+  init();
+}
+
 /* -------------------- スペースキー打鍵時処理 -------------------- */
-function space_start() {　 //スペースキー打鍵禁止
+function space_start() {
+  //スペースキー打鍵禁止
   space_flag = DISABLE;
   //カウントダウン
   startcount--;
@@ -166,6 +170,8 @@ function space_start() {　 //スペースキー打鍵禁止
     setTimeout("space_start()", TIMEOUT_1SEC);
     //ゲームスタート
   } else if (startcount == 0) {
+    //ゲーム中フラグ
+    game_flag = NOWPLAY;
     messageArea.textContent = "GO!";
     startTyping();
     //カウントダウン
@@ -177,8 +183,6 @@ function space_start() {　 //スペースキー打鍵禁止
 
 /* -------------------- ゲームスタート処理 -------------------- */
 function startTyping() {
-  //ゲーム中フラグ
-  game_flag = NOWPLAY;
   //出題文字列表示
   nextWord();
   //カウントダウン開始
@@ -236,11 +240,13 @@ function stopTyping() {
   clearInterval(timer1Sec);
   //ゲーム中フラグOFF
   game_flag = STOPPLAY;
+
   typeArea.textContent = "";
   typeArea2.textContent = "";
   wordArea_hiragana.textContent = "";
   wordArea_jp.textContent = "タイムアップ";
   time_area.textContent = "TIMEUP";
+
   //ストップ処理遷移待ちタイムアウト
   setTimeout("stop_refresh()", TIMEOUT_1SEC);
 }
