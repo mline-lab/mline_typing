@@ -81,6 +81,7 @@ var messageArea;
 
 /* -------------------- 遷移時初期処理 -------------------- */
 window.onload = function() {
+  console.log('遷移時初期処理');
   startButton = document.getElementById("start_button");
   messageArea = document.getElementById("message");
   wordArea_jp = document.getElementById("word_jp");
@@ -97,6 +98,7 @@ window.onload = function() {
 
 /* -------------------- 出題文字列取得処理 -------------------- */
 function getCSV_jp_File() {
+  console.log('出題文字列取得処理');
     var xhr = new XMLHttpRequest();
     xhr.open("get", "csv/word.csv", true);
     xhr.send(null);
@@ -107,6 +109,7 @@ function getCSV_jp_File() {
 
 /* -------------------- 出題文字列ふりがな取得処理 -------------------- */
 function getCSV_hira_File() {
+  console.log('出題文字列ふりがな取得処理');
     var xhr2 = new XMLHttpRequest();
     xhr2.open("get", "csv/word_hiragana.csv", true);
     xhr2.send(null);
@@ -117,6 +120,7 @@ function getCSV_hira_File() {
 
 /* -------------------- 初期化処理 -------------------- */
 function init() {
+  console.log('初期化処理');
   //ゲームスタートカウント初期化
   startcount = GAMESTARTCOUNT;
   //ゲーム制限時間セット
@@ -154,35 +158,40 @@ function init() {
 
 /* -------------------- スタートボタンクリック時処理 -------------------- */
 function onStartButtonClick() {
+  console.log('スタートボタンクリック時処理');
   //初期化処理
   init();
 }
 
 /* -------------------- スペースキー打鍵時処理 -------------------- */
 function space_start() {
-  //スペースキー打鍵禁止
-  space_flag = DISABLE;
-  //カウントダウン
-  startcount--;
-  //Redy表示
-  if (startcount == 4) {
-    messageArea.textContent = "Ready...";
-    setTimeout("space_start()", TIMEOUT_1SEC);
-    //ゲームスタート
-  } else if (startcount == 0) {
-    //ゲーム中フラグ
-    game_flag = NOWPLAY;
-    messageArea.textContent = "GO!";
-    startTyping();
+  console.log('スペースキー打鍵時処理');
+  if (game_flag != NOWPLAY) {
+    //スペースキー打鍵禁止
+    space_flag = DISABLE;
     //カウントダウン
-  } else {
-    messageArea.textContent = startcount;
-    setTimeout("space_start()", TIMEOUT_1SEC);
+    startcount--;
+    //Redy表示
+    if (startcount == 4) {
+      messageArea.textContent = "Ready...";
+      setTimeout("space_start()", TIMEOUT_1SEC);
+      //ゲームスタート
+    } else if (startcount == 0) {
+      //ゲーム中フラグ
+      game_flag = NOWPLAY;
+      messageArea.textContent = "GO!";
+      startTyping();
+      //カウントダウン
+    } else {
+      messageArea.textContent = startcount;
+      setTimeout("space_start()", TIMEOUT_1SEC);
+    }
   }
 }
 
 /* -------------------- ゲームスタート処理 -------------------- */
 function startTyping() {
+  console.log('ゲームスタート処理');
   //出題文字列表示
   nextWord();
   //カウントダウン開始
@@ -192,6 +201,7 @@ function startTyping() {
 
 /* -------------------- 出題表示処理 -------------------- */
 function nextWord() {
+  console.log('出題表示処理');
   if (timeCount >= TIMEUP) {
     //タイピング処理用変数クリア
     tableichi = SET_CLR;
@@ -222,6 +232,7 @@ function nextWord() {
 
 /* -------------------- 制限時間カウントダウン -------------------- */
 function countDown() {
+  console.log('制限時間カウントダウン');
   if (game_flag == NOWPLAY) {
     if (timeCount == TIMEUP) {
       //ゲーム終了処理
@@ -236,6 +247,7 @@ function countDown() {
 
 /* -------------------- ゲーム終了処理 -------------------- */
 function stopTyping() {
+  console.log('ゲーム終了処理');
   //カウントストップ
   clearInterval(timer1Sec);
   //ゲーム中フラグOFF
@@ -253,6 +265,7 @@ function stopTyping() {
 
 /* -------------------- ゲーム終了時処理 -------------------- */
 function stop_refresh() {
+  console.log('ゲーム終了時処理');
   //成績表示
   messageArea.textContent = "Score: " + score + "■倒した数" + downcount + "■ミスタイプ数" + missCount;
   //入力文字表示クリア
@@ -267,6 +280,7 @@ function stop_refresh() {
 
 /* -------------------- ESCキーゲーム中断時処理 -------------------- */
 function esc() {
+  console.log('ESCキーゲーム中断時処理');
   //カウントストップ
   clearInterval(timer1Sec);
   //入力文字表示クリア
@@ -281,6 +295,7 @@ function esc() {
 
 /* -------------------- ランキング登録時処理 -------------------- */
 function rank_push() {
+  console.log('ランキング登録時処理');
   //登録名取得
   username = document.ranking.username.value;
   //ランキング登録処理
@@ -308,6 +323,7 @@ function rank_push() {
 
 /* -------------------- 入力文字変換処理 -------------------- */
 function moziHenkan(e) {
+  console.log('入力文字変換処理');
   data = new Array(16);
   data[0] = jword;
   data[1] = word;
@@ -365,6 +381,7 @@ function moziHenkan(e) {
 
 /* -------------------- 正当文字入力時処理 -------------------- */
 function hantei() {
+  console.log('正当文字入力時処理');
   //ゲーム中か判定
   if (game_flag == NOWPLAY) {
     //スコアカウントアップ
@@ -404,6 +421,7 @@ function hantei() {
 
 /* -------------------- シフトキー入力チェック -------------------- */
 document.onkeyup = function(e) {
+  console.log('シフトキー入力チェック');
   var temp;
   if ((temp = checkshift(e)) === 0) {
     shiftdown = SET_CLR;
@@ -412,6 +430,7 @@ document.onkeyup = function(e) {
 
 /* -------------------- キー入力チェック -------------------- */
 document.onkeydown = function(e) {
+  console.log('キー入力チェック');
   var keyStr;
 
   if (e.keyCode == 32) {
