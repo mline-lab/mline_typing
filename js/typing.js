@@ -145,8 +145,8 @@ function init()
     //出題文字クリア
     wordArea_hiragana.textContent = "";
     wordArea_jp.textContent = "";
-    //スタートボタン非表示
-    startButton.style.visibility = "hidden";
+    //スタートボタン表示
+    startButton.style.visibility = "visible";
     //メッセージエリア文字列クリア
     messageArea.textContent = "";
 }
@@ -178,10 +178,6 @@ function setContent()
     //出題文字クリア
     wordArea_hiragana.textContent = "";
     wordArea_jp.textContent = "";
-    //スタートボタン表示
-    startButton.style.visibility = "visible";
-    //メッセージエリア文字列
-    messageArea.textContent = "スタートボタンクリック";
 }
 
 /* -------------------- スタートボタンクリック時処理 -------------------- */
@@ -352,7 +348,7 @@ function stop_refresh()
     //出題文字表示クリア
     wordArea_hiragana.textContent = "";
     wordArea_jp.textContent = "";
-    //スタートボタン非表示
+    //スタートボタン表示
     startButton.style.visibility = "visible";
 }
   
