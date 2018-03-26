@@ -62,10 +62,10 @@ var timer1Sec;
 var startcount;
 //制限時間カウンター
 var timeCount;
-//ミス数カウンター
-var missCount;
 //スコアカウンター
 var score;
+//ミス数カウンター
+var missCount;
 //打ち切った単語数
 var downcount;
 //ノーミスゲージ
