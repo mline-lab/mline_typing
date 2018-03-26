@@ -178,6 +178,10 @@ function setContent()
     //出題文字クリア
     wordArea_hiragana.textContent = "";
     wordArea_jp.textContent = "";
+    //スタートボタン表示
+    startButton.style.visibility = "hidden";
+    //メッセージエリア文字列クリア
+    messageArea.textContent = "スペースボタンでスタート";
 }
 
 /* -------------------- スタートボタンクリック時処理 -------------------- */
