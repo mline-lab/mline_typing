@@ -204,6 +204,8 @@ function space_start()
         gameFlg_nowPlay();
         //スペースキー打鍵禁止
         spaceKey_disable();
+        //スペースキー打鍵後処理
+        startCount();
     }
 }
 
