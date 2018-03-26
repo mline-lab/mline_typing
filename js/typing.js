@@ -117,11 +117,9 @@ function load()
 /* -------------------- 初期化処理 -------------------- */
 function init()
 {
-    //遷移先⇒ロード中
-    typingStatus = TYPING_LOAD;
     //非ゲーム中
     game_flag = STOPPLAY;
-    //スペースキー打鍵許可
+    //スペースキー打鍵禁止
     space_flag = DISABLE;
     //タイマプリセット
     timer1Sec = SET_CLR;
@@ -151,6 +149,39 @@ function init()
     startButton.style.visibility = "hidden";
     //メッセージエリア文字列クリア
     messageArea.textContent = "";
+}
+
+/* -------------------- スタート前初期化時処理 -------------------- */
+function setContent()
+{
+    //タイマプリセット
+    timer1Sec = SET_CLR;
+    //ゲームスタートカウント初期化
+    startcount = GAMESTARTCOUNT;
+    //ゲーム制限時間セット
+    timeCount = TIMELIMIT;
+    //スコアクリア
+    score = SET_CLR;
+    //ミスカウントクリア
+    missCount = SET_CLR;
+    //打ち切った数クリア
+    downcount = SET_CLR;
+    //ノーミスゲージクリア
+    gauge = SET_CLR;
+    //出題文字列クリア
+    wordChars = [];
+    //スコア表示クリア
+    score_area.textContent = "0000";
+    //入力文字クリア
+    typeArea.textContent = "";
+    typeArea2.textContent = "";
+    //出題文字クリア
+    wordArea_hiragana.textContent = "";
+    wordArea_jp.textContent = "";
+    //スタートボタン表示
+    startButton.style.visibility = "visible";
+    //メッセージエリア文字列
+    messageArea.textContent = "スタートボタンクリック";
 }
 
 /* -------------------- スタートボタンクリック時処理 -------------------- */
