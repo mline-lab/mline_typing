@@ -188,8 +188,8 @@ function setContent()
 function onStartButtonClick()
 {
     console.log('スタートボタンクリック時処理');
-    //初期化処理
-    init();
+    //スタート前初期化時処理
+    setContent();
     //スペースキー打鍵許可
     spaceKey_enable();
 }
