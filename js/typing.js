@@ -81,7 +81,7 @@ var postObj;
 //セットデータ名
 var setData = ["score","downcount","missCount"];
 //データ送信用配列
-var postData = [score,downcount,missCount];
+var postData = new Array();
 
 /* -------------------- ゲーム画面表示変数 -------------------- */
 //メッセージエリア表示文字
@@ -368,7 +368,8 @@ function stop_refresh()
     startButton.style.visibility = "visible";
 
     //ランキング登録画面表示
-    popPostJump("./rankingAdd.php","ランキング登録",setData,postData);
+    postData.push(score,downcount,missCount);
+    popPostJump("./rankingAdd.php","ランキング登録",setData[],postData);
 }
   
 /* -------------------- ESCキーゲーム中断時処理 -------------------- */
