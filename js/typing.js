@@ -368,7 +368,7 @@ function stop_refresh()
     startButton.style.visibility = "visible";
 
     //ランキング登録画面表示
-    popPostJump("./rankingAdd.html","ランキング登録",setData,postData);
+    popPostJump("./rankingAdd.php","ランキング登録",setData,postData);
 }
   
 /* -------------------- ESCキーゲーム中断時処理 -------------------- */
