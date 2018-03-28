@@ -191,10 +191,13 @@ function setContent()
 function onStartButtonClick()
 {
     console.log('スタートボタンクリック時処理');
-    //スタート前初期化時処理
-    setContent();
-    //スペースキー打鍵許可
-    spaceKey_enable();
+    if (game_flag != NOWPLAY)
+    {
+        //スタート前初期化時処理
+        setContent();
+        //スペースキー打鍵許可
+        spaceKey_enable();
+    }
 }
 
 /* -------------------- スペースキー打鍵時処理 -------------------- */
