@@ -25,17 +25,6 @@ const TIMELIMIT      = 10;
 // -2の数値がカウントされる。
 const GAMESTARTCOUNT = 5;
 
-/* -------------------- 状態遷移定数 -------------------- */
-const TYPING_LOAD       = 0;
-const TYPING_WAIT       = 1;
-const TYPING_GAMEREADY  = 2;
-const TYPING_STARTWAIT  = 3
-const TYPING_GAMEPLAY   = 4;
-const TYPING_GAMEFINISH = 5;
-
-/* -------------------- 状態遷移変数 -------------------- */
-var typingStatus;
-
 /* -------------------- フラグ用変数 -------------------- */
 //ゲーム中フラグ
 // ゲーム中:1 非ゲーム中:0
@@ -85,6 +74,14 @@ var gauge;
 /* -------------------- 送信用変数 -------------------- */
 //ランキング登録ネーム
 var username;
+
+//ポスト用変数
+var postObj;
+
+//セットデータ名
+var setData = ["score","downcount","missCount"];
+//データ送信用配列
+var postData = [score,downcount,missCount];
 
 /* -------------------- ゲーム画面表示変数 -------------------- */
 //メッセージエリア表示文字
@@ -191,10 +188,13 @@ function setContent()
 function onStartButtonClick()
 {
     console.log('スタートボタンクリック時処理');
+    //ゲーム中に動作しないようガード処理
     if (game_flag != NOWPLAY)
     {
         //スタート前初期化時処理
         setContent();
+        //ゲーム中フラグON
+        gameFlg_nowPlay();
         //スペースキー打鍵許可
         spaceKey_enable();
     }
@@ -204,10 +204,9 @@ function onStartButtonClick()
 function space_start()
 {
     console.log('スペースキー打鍵時処理');
+    //ゲーム中に動作しないようガード処理
     if (game_flag != NOWPLAY)
     {
-        //ゲーム中フラグ
-        gameFlg_nowPlay();
         //スペースキー打鍵禁止
         spaceKey_disable();
         //スペースキー打鍵後処理
@@ -218,24 +217,26 @@ function space_start()
 /* -------------------- スペースキー打鍵後処理 -------------------- */
 function startCount()
 {
-    console.log('redyカウントダウン');
     //カウントダウン
     startcount--;
     //Redy表示
     if (startcount == 4)
     {
+        console.log('開始カウントダウン:Ready');
         messageArea.textContent = "Ready...";
         setTimeout("startCount()", TIMEOUT_1SEC);
     //ゲームスタート
     }
     else if (startcount == 0)
     {
+        console.log('開始カウントダウン:GO!');
         messageArea.textContent = "GO!";
         startTyping();
     //カウントダウン
     }
     else
     {
+        console.log('開始カウントダウン:'.startcount);
         messageArea.textContent = startcount;
         setTimeout("startCount()", TIMEOUT_1SEC);
     }
@@ -288,7 +289,7 @@ function nextWord()
   
 /* -------------------- 制限時間カウントダウン -------------------- */
 function countDown() {
-    console.log('制限時間カウントダウン');
+    console.log('制限時間カウントダウン:'.timeCount);
     if (game_flag == NOWPLAY)
     {
         if (timeCount == TIMEUP)
@@ -365,6 +366,9 @@ function stop_refresh()
     wordArea_jp.textContent = "";
     //スタートボタン表示
     startButton.style.visibility = "visible";
+
+    //ランキング登録画面表示
+    popPostJump("./rankingAdd.html","ランキング登録",setData,postData);
 }
   
 /* -------------------- ESCキーゲーム中断時処理 -------------------- */
@@ -384,32 +388,22 @@ function esc()
 }
   
 /* -------------------- ランキング登録時処理 -------------------- */
-function rank_push()
-{
-    console.log('ランキング登録時処理');
-    //登録名取得
-    username = document.ranking.username.value;
-    //ランキング登録処理
-    if (username.match(/"/) || username.match(/'/)) {
-  
-    } else {
-      mode = "1";
-      $.ajax({
-        type: 'POST',
-        url: 'rank_push.php',
-        data: {
-          'name': username,
-          'score': score,
-          'count': downcount,
-          'miss': missCount,
-          'mode': mode,
-          'difficulty': difficulty_check
-        },
-        success: function(data) {
-          console.log('登録成功');
-        }
-      });
+function popPostJump(_url, _win, _keys, _vals){
+    $('#postjump').remove();
+    if( (postObj) && (!postObj.closed) ){
+        postObj.close();
     }
+
+    postObj = window.open("about:blank",_win,"width=660,height=600,scrollbars=yes");
+    var html = '<form method="post" action="'+_url+'" id="postjump" target="'+_win+'" style="display: none;">';
+    for(var cnt=0;cnt<_keys.length;cnt++){
+        html += '<input type="hidden" name="'+_keys[cnt]+'" value="'+_vals[cnt]+'" >';
+    }
+
+    html += '</form>';
+    $("body").append(html);
+    $('#postjump').submit();
+    $('#postjump').remove();
 }
   
 /* -------------------- 入力文字変換処理 -------------------- */
@@ -529,8 +523,6 @@ document.onkeyup = function(e)
 document.onkeydown = function(e)
 {
     console.log('キー入力チェック');
-    var keyStr;
-
     if (e.keyCode == 32)
     {
         if (space_flag == ENABLE)
@@ -542,7 +534,7 @@ document.onkeydown = function(e)
     {
         if (game_flag == NOWPLAY)
         {
-        game_flag = STOPPLAY;
+            game_flag = STOPPLAY;
             esc();
         }
     }
