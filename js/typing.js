@@ -205,7 +205,7 @@ function space_start()
 {
     console.log('スペースキー打鍵時処理');
     //ゲーム中に動作しないようガード処理
-    if (game_flag != NOWPLAY)
+    if (space_flag == ENABLE)
     {
         //スペースキー打鍵禁止
         spaceKey_disable();
