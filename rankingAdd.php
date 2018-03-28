@@ -12,9 +12,9 @@
         $count = $_POST['downcount'];
         $miss = $_POST['missCount'];
 
-        echo $score;
-        echo $count;
-        echo $miss;
+        echo "スコア".$score."</br>";
+        echo "単語数".$count."</br>";
+        echo "ミス数".$miss;
     ?>
 </body>
 </html>
