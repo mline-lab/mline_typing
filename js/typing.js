@@ -236,7 +236,7 @@ function startCount()
     }
     else
     {
-        console.log('開始カウントダウン:'.startcount);
+        console.log('開始カウントダウン:'+startcount);
         messageArea.textContent = startcount;
         setTimeout("startCount()", TIMEOUT_1SEC);
     }
@@ -289,7 +289,7 @@ function nextWord()
   
 /* -------------------- 制限時間カウントダウン -------------------- */
 function countDown() {
-    console.log('制限時間カウントダウン:'.timeCount);
+    console.log('制限時間カウントダウン:'+timeCount);
     if (game_flag == NOWPLAY)
     {
         if (timeCount == TIMEUP)
