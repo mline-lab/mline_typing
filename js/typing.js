@@ -93,6 +93,7 @@ var messageArea;
 /* -------------------- ページロード時処理 -------------------- */
 window.onload = function()
 {
+    console.log('ページロード時処理');
     load();
 }
 
@@ -117,6 +118,7 @@ function load()
 /* -------------------- 初期化処理 -------------------- */
 function init()
 {
+    console.log('初期化処理');
     //非ゲーム中
     game_flag = STOPPLAY;
     //スペースキー打鍵禁止
@@ -154,6 +156,7 @@ function init()
 /* -------------------- スタート前初期化時処理 -------------------- */
 function setContent()
 {
+    console.log('スタート前初期化時処理');
     //タイマプリセット
     timer1Sec = SET_CLR;
     //ゲームスタートカウント初期化
@@ -212,6 +215,7 @@ function space_start()
 /* -------------------- スペースキー打鍵後処理 -------------------- */
 function startCount()
 {
+    console.log('redyカウントダウン');
     //カウントダウン
     startcount--;
     //Redy表示
@@ -304,6 +308,7 @@ function countDown() {
 /* -------------------- 出題文字列取得処理 -------------------- */
 function getCSV_jp_File()
 {
+    console.log('出題文字列取得処理');
     var xhr = new XMLHttpRequest();
     xhr.open("get", "csv/word.csv", true);
     xhr.send(null);
@@ -315,6 +320,7 @@ function getCSV_jp_File()
 /* -------------------- 出題文字列ふりがな取得処理 -------------------- */
 function getCSV_hira_File()
 {
+    console.log('出題文字列ふりがな取得処理');
     var xhr2 = new XMLHttpRequest();
     xhr2.open("get", "csv/word_hiragana.csv", true);
     xhr2.send(null);
@@ -512,7 +518,7 @@ document.onkeyup = function(e)
     var temp;
     if ((temp = checkshift(e)) === 0)
     {
-      shiftdown = SET_CLR;
+        shiftdown = SET_CLR;
     }
 }
   
@@ -526,7 +532,7 @@ document.onkeydown = function(e)
     {
         if (space_flag == ENABLE)
         {
-        space_start();
+            space_start();
         }
     }
     else if (e.keyCode == 27)
@@ -534,14 +540,14 @@ document.onkeydown = function(e)
         if (game_flag == NOWPLAY)
         {
         game_flag = STOPPLAY;
-        esc();
+            esc();
         }
     }
     else
     {
         if (game_flag == NOWPLAY)
         {
-        moziHenkan(e);
+            moziHenkan(e);
         }
     }
 }
@@ -550,23 +556,27 @@ document.onkeydown = function(e)
 /* -------------------- ゲームプレイ中 -------------------- */
 function gameFlg_nowPlay()
 {
+    console.log('ゲームプレイ中');
     game_flag = NOWPLAY;
 }
 
 /* -------------------- ゲーム非プレイ中 -------------------- */
 function gameFlg_stopPlay()
 {
+    console.log('ゲーム非プレイ中');
     game_flag = STOPPLAY;
 }
 
 /* -------------------- スペースキー打鍵許可 -------------------- */
 function spaceKey_enable()
 {
+    console.log('スペースキー打鍵許可');
     space_flag = ENABLE;
 }
 
 /* -------------------- スペースキー打鍵禁止 -------------------- */
 function spaceKey_disable()
 {
+    console.log('スペースキー打鍵禁止');
     space_flag = DISABLE;
 }
