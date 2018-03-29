@@ -1,4 +1,6 @@
 <?php
+    //セッションスタート
+    session_start();
 
     $score = $_SESSION['score'];
     $count = $_SESSION['count'];
