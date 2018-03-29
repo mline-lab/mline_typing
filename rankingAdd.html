@@ -15,6 +15,19 @@
         echo "スコア:".$score."</br>";
         echo "単語数:".$count."</br>";
         echo "ミス数:".$miss;
+
+        //セッションスタート
+        session_start();
+
+        //変数をセッションに登録
+        $_SESSION['score'] = $score;
+        $_SESSION['count'] = $count;
+        $_SESSION['miss']  = $miss;
     ?>
+
+    <form action="./insert.php" method="post">
+        <input type="search" name="username" value="">
+        <input type="submit" value="登録">
+    </form>
 </body>
 </html>
