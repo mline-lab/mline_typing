@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ランキング|LostColor</title>
+<meta charset="utf-8">
+<meta name="description" content="LostColor-細菌タイピイングADV-">
+
+<link rel="stylesheet" href=".css/ranking.css" type="text/css">
+<script src="./js/jquery-3.2.1.min.js" charset="utf-8"></script>
+<script src="./js/jquery.pagination.js"></script>
+<script>
+$(function(){
+  $('tr#list').pagination({
+      pager        : $('.pager'),
+      prevText     : '＜',
+      nextText     : '＞',
+      firstText    : '≪',
+      lastText     : '≫',
+      viewNum      : 30,
+      pagerNum     : 10,
+      ellipsis     : true,
+      linkInvalid  : true,
+      goTop        : true,
+      firstLastNav : true,
+      prevNextNav  : false
+  });
+});
+</script>
+
+</head>
+<body>
+
+  <div class="main">
+    <div class="content">
+      <div class="rank_list">
+        <a href="ranking_easy.html"><img src="../images/rk/rank-nomal.png"/></a>
+        <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
+          <tr>
+            <th bgcolor="#81fcf1">順位</th>
+            <th bgcolor="#81fcf1">名前</th>
+            <th bgcolor="#81fcf1">スコア</th>
+            <th bgcolor="#81fcf1">討伐数</th>
+            <th bgcolor="#81fcf1">ミス数</th>
+            <th bgcolor="#81fcf1">モード</th>
+          </tr>
+  <?php
+
+  $dsn = 'mysql:dbname=lostcolor;host=localhost';
+  $user = 'mline';
+  $password = 'manaki079';
+
+  $rank = 0;
+
+  $mode;
+
+  try{
+      $dbh = new PDO($dsn, $user, $password);
+
+      if ($dbh == null){
+          //接続失敗
+      }else{
+          //接続成功
+      }
+
+      $dbh->query('SET NAMES utf8');
+
+      $sql = 'SELECT typing FROM score ORDER BY score DESC';
+      $stmt = $dbh->query($sql);
+
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+          $rank++;
+          echo "<tr id=\"list\">";
+          echo "<th>";
+          echo ($rank);
+          echo "<th class=\"name\">";
+          echo($result['name']);
+          echo "</th>";
+          echo "<th>";
+          echo($result['score']);
+          echo "</th>";
+          echo "<th>";
+          echo($result['count']);
+          echo "</th>";
+          echo "<th>";
+          echo($result['miss']);
+          echo "</th>";
+          echo "</tr>";
+      }
+
+      }catch (PDOException $e){
+        print('Error:'.$e->getMessage());
+        die();
+      }
+
+  $dbh = null;
+
+   ?>
+   </table>
+   </div>
+
+  <div class="pager"></div>
+  <div class="pageNum">
+    <span class="nownum"></span>/<span class="totalnum"></span>pages
+  </div>
+
+   </div>
+  </div>
+</body>
+</html>

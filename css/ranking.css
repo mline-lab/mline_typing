@@ -1,0 +1,109 @@
+body{
+    width: 100%;
+    font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+    background: linear-gradient(rgba(255, 255, 255, 0.7) 70%, rgba(87, 255, 119, 0.5)), url(../images/bg_bg_bg.png);    /*背景色、背景画像の読み込み*/
+  }
+  
+  .main{
+    width: 100%;
+  }
+  
+  .main div	{
+    width: 700px;
+    text-align: center;
+    font-size: 1em;
+    margin: 0 auto;
+  }
+  
+  table {
+    width: 100%;
+    background: rgb(250, 250, 250);
+  }
+  
+  a {
+    text-decoration: none;
+    color: rgb(33, 33, 33);
+  }
+  
+  /* 上部ヘッダー */
+  
+  .head_menu {
+      margin-top: 10px;
+      width: 100%;
+      height: 70px;
+  }
+  
+  .head_img {
+      width: 170px;
+      height: 70px;
+      float: left;
+      background-image: url("../images/head_img_title.png");
+  }
+  
+  #menu {
+      width: 1024px;
+      height: 70px;
+      padding: 0;
+      margin: 0 auto;
+      list-style-type: none;
+      text-align: center;
+  }
+  
+  #menu li {
+      width: 170px;
+      height: 71px;
+      float: left;
+      /*マウスオン時の移り変わるまでの時間設定。0.5秒。*/
+      transition: 0.5s;
+      /*同上*/
+  }
+  
+  #menu li:hover {
+      color: #c80000;
+      /*文字色*/
+      background: rgb(187, 247, 177);
+      /*背景色*/
+  }
+  
+  
+  .select_mode ul{
+  position: relative;
+  left: 50%;
+  float:left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  }
+  .select_mode li{
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: -50%;
+  float:left;
+  }
+  .select_mode li a{
+  display: block;
+  background: url() no-repeat;
+  border: 0px;
+  padding: 3px;
+  text-decoration: none;
+  color: #333;
+  width: 100px;
+  height: 31px;
+  margin: 0px 0px 2px 0px;
+  padding: 4px;
+  text-align: center;
+  font-size: 14px;
+  }
+  .select_mode li a:hover{
+  display: block;
+  text-decoration: underline;
+  }
+  
+  
+  .pager span{
+  
+  }
+  .pager span:hover{
+    color:#E48E00;
+  }
