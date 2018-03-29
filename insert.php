@@ -8,7 +8,12 @@
 
     session_destroy ();
 
-    $name = $_POST['username'];
+    $name = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
+    if ($name == "") {
+        $name = "名無し";
+    } elseif (strpos($name,'script&') !== false) {
+        $name = "このサイトに攻撃を仕掛けた愚か者";
+    }
 
     echo "スコア:".$score."</br>";
     echo "単語数:".$count."</br>";
