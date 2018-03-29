@@ -369,7 +369,7 @@ function stop_refresh()
 
     //ランキング登録画面表示
     postData.push(score,downcount,missCount);
-    popPostJump("./rankingAdd.php","ランキング登録",setData,postData);
+    popPostJump("./rankingAdd.html","ランキング登録",setData,postData);
 }
   
 /* -------------------- ESCキーゲーム中断時処理 -------------------- */
