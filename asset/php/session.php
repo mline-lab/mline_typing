@@ -11,12 +11,16 @@
     //暗号化関数
     include('encryption.php');
     
+    echo "chek_1";
+
     //score暗号化
     $en_score = reqEncDec( $score, $encMode);
     //count暗号化
     $en_count = reqEncDec( $count, $encMode);
     //miss暗号化
     $en_miss  = reqEncDec( $miss, $encMode);
+
+    echo "chek_2";
 
     //セッションスタート
     session_start();
@@ -26,8 +30,12 @@
     //セッションキー設定ファイル
     include('session_key.php');
 
+    echo "chek_3";
+
     //変数をセッションに登録
     $_SESSION[$key_score] = $score;
     $_SESSION[$key_count] = $count;
     $_SESSION[$key_miss]  = $miss;
+
+    echo "chek_4";
 ?>
