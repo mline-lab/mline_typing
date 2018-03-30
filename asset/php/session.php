@@ -9,7 +9,7 @@
     echo "ミス数:".$miss;
 
     //暗号化関数
-    include('/asset/php/encryption.php');
+    include('encryption.php');
     
     //score暗号化
     $en_score = reqEncDec( $score, $encMode);
@@ -24,7 +24,7 @@
     session_regenerate_id(true);
 
     //セッションキー設定ファイル
-    include('/asset/php/session_key.php');
+    include('session_key.php');
 
     //変数をセッションに登録
     $_SESSION[$key_score] = $score;

@@ -3,7 +3,7 @@
     session_start();
 
     //セッションキー設定ファイル
-    include('/asset/php/session_key.php');    
+    include('session_key.php');    
 
     $score = $_SESSION[$key_score ];
     $count = $_SESSION[$key_count];
@@ -13,7 +13,7 @@
     session_destroy ();
 
     //暗号化関数
-    include('/asset/php/encryption.php');
+    include('encryption.php');
 
     //score復号化
     $en_score = reqEncDec( $score, $decMode);
