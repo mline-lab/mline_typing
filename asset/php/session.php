@@ -9,7 +9,9 @@
         || ( $count == '' )
         || ( $miss  == '' ) )
     {
-        header( "Location: https://tonatea.jp/error/ngaccess.html" );
+        $redirectUrl = "https://tonatea.jp/error/404.html";
+        header("HTTP/1.0 404 Not Found");
+        print(file_get_contents($redirectUrl));
 	    exit();
     }
 
