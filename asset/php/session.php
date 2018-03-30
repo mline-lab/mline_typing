@@ -4,9 +4,13 @@
     $count = $_POST['kye_downcount'];
     $miss  = $_POST['kye_misscount'];
 
-    if( $score == '' )
+    //データが空の場合は不正なアクセスとみなす
+    if(    ( $score == '' )
+        || ( $count == '' )
+        || ( $miss  == '' ) )
     {
-        $score = '空';
+        header( "Location: ../../errot/ng_access.html" );
+	    exit;
     }
 
     echo "スコア:".$score."</br>";
