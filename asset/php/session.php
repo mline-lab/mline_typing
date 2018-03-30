@@ -4,7 +4,8 @@
     $count = $_POST['kye_downcount'];
     $miss  = $_POST['kye_misscount'];
 
-    if(isset($_POST['kye_score'])) {
+    if( $score == '' )
+    {
         $score = '空';
     }
 
