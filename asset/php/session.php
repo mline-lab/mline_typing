@@ -1,20 +1,4 @@
 <?php
-    //データの受け取り
-    $score = $_POST['kye_score'];
-    $count = $_POST['kye_downcount'];
-    $miss  = $_POST['kye_misscount'];
-
-    //データが空の場合は不正なアクセスとみなす
-    if(    ( $score == '' )
-        || ( $count == '' )
-        || ( $miss  == '' ) )
-    {
-        $redirectUrl = "https://tonatea.jp/error/404.html";
-        header("HTTP/1.0 404 Not Found");
-        print(file_get_contents($redirectUrl));
-	    exit();
-    }
-
     echo "スコア:".$score."</br>";
     echo "単語数:".$count."</br>";
     echo "ミス数:".$miss."</br>";
