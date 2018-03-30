@@ -31,7 +31,7 @@
     include('session_key.php');
 
     //変数をセッションに登録
-    $_SESSION[$key_score] = $score;
-    $_SESSION[$key_count] = $count;
-    $_SESSION[$key_miss]  = $miss;
+    $_SESSION[$key_score] = $en_score;
+    $_SESSION[$key_count] = $en_count;
+    $_SESSION[$key_miss]  = $en_miss;
 ?>
