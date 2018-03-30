@@ -9,7 +9,7 @@
         || ( $count == '' )
         || ( $miss  == '' ) )
     {
-        header( "Location: ../../errot/ng_access.html" );
+        header( "Location: ../../error/ng_access.html" );
 	    exit;
     }
 
