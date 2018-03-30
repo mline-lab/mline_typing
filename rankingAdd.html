@@ -1,3 +1,6 @@
+<?php
+    include('asset/php/session.php');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,9 +10,6 @@
 </head>
 
 <body>
-    <?php
-        include('asset/php/session.php');
-    ?>
     <form action="asset/php/insert.php" method="post">
         <input type="search" name="username" value="">
         <input type="submit" value="登録">
