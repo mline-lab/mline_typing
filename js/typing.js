@@ -535,7 +535,7 @@ function moziHenkan(e)
       //ミス入力時処理
       } else {
         gauge = SET_CLR;
-        missCount++;
+        //missCount++;
         console.log('ミス数'+missCount);
       }
     }
