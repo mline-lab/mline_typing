@@ -9,8 +9,8 @@
         || ( $count == '' )
         || ( $miss  == '' ) )
     {
-        header( "Location: ../../error/ngaccess.html" );
-	    exit;
+        header( "Location: https://tonatea.jp/error/ngaccess.html" );
+	    exit();
     }
 
     echo "スコア:".$score."</br>";
