@@ -4,6 +4,10 @@
     $count = $_POST['kye_downcount'];
     $miss  = $_POST['kye_misscount'];
 
+    if(isset($_POST['kye_score'])) {
+        $score = '空';
+    }
+
     echo "スコア:".$score."</br>";
     echo "単語数:".$count."</br>";
     echo "ミス数:".$miss."</br>";
