@@ -3,8 +3,8 @@ $encMode = 1;
 $decMode = 2;
 
 //暗号化複合化関数
-function reqEncDec($str, $mode){
-
+function reqEncDec($str, $mode)
+{
 	//$mode 1:暗号 2:複合
 
 	//暗号化＆復号化キー
