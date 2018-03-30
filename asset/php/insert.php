@@ -9,10 +9,6 @@
     $count = $_SESSION[$key_count];
     $miss  = $_SESSION[$key_miss];
 
-    echo "暗号スコア:".$score."</br>";
-    echo "暗号単語数:".$count."</br>";
-    echo "暗号ミス数:".$miss."</br>";
-
     //セッションデータ破棄
     session_destroy ();
 
@@ -33,10 +29,7 @@
         $name = "このサイトに攻撃を仕掛けた愚か者";
     }
 
-    echo "スコア:".$en_score."</br>";
-    echo "単語数:".$en_count."</br>";
-    echo "ミス数:".$en_miss."</br>";
-    echo "名前：".$name."</br>";
+    echo "名前：".$name."登録完了</br>";
 
     try
     {

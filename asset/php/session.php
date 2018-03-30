@@ -18,10 +18,6 @@
     //miss暗号化
     $en_miss  = reqEncDec( $miss, $encMode);
 
-    echo "暗号スコア:".$en_score."</br>";
-    echo "暗号単語数:".$en_count."</br>";
-    echo "暗号ミス数:".$en_miss."</br>";
-
     //セッションスタート
     session_start();
 
