@@ -8,26 +8,9 @@
 
 <body>
     <?php
-        $score = $_POST['score'];
-        $count = $_POST['downcount'];
-        $miss  = $_POST['misscount'];
-
-        echo "スコア:".$score."</br>";
-        echo "単語数:".$count."</br>";
-        echo "ミス数:".$miss;
-
-        //セッションスタート
-        session_start();
-
-        session_regenerate_id(true);
-
-        //変数をセッションに登録
-        $_SESSION['score'] = $score;
-        $_SESSION['count'] = $count;
-        $_SESSION['miss']  = $miss;
+        include('/asset/php/session.php');
     ?>
-
-    <form action="./insert.php" method="post">
+    <form action="/asset/php/insert.php" method="post">
         <input type="search" name="username" value="">
         <input type="submit" value="登録">
     </form>

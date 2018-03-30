@@ -79,7 +79,7 @@ var username;
 var postObj;
 
 //セットデータ名
-var setData = ["score","downcount","misscount"];
+var setData = ["kye_score","kye_downcount","kye_misscount"];
 //データ送信用配列
 var postData = new Array();
 
