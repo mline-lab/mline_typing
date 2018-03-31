@@ -12,6 +12,17 @@
     //セッションデータ破棄
     session_destroy ();
 
+    //データが空の場合は不正なアクセスとみなす
+    if(    ( $score == '' )
+        || ( $count == '' )
+        || ( $miss  == '' ) )
+    {
+        $redirectUrl = "https://tonatea.jp/ng/404.html";
+        header("HTTP/1.0 404 Not Found");
+        print(file_get_contents($redirectUrl));
+        exit();
+    }
+
     //暗号化関数
     include('encryption.php');
 
@@ -25,8 +36,6 @@
     $name = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
     if ($name == "") {
         $name = "名無し";
-    } elseif (strpos($name,'script&') !== false) {
-        $name = "このサイトに攻撃を仕掛けた愚か者";
     }
 
     echo "名前：".$name."登録完了</br>";
