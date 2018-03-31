@@ -83,7 +83,7 @@ var dummy_1 = "yvycc1exry378vzi6k3dsku3nvufc6jzj2tz6ju6l7yyxc60jclhd55mys4xm3uq7
 var dummy_2 = "ztb0ubhatdarkngezuhvz8qr66wysyhf9g8qc9vqct1dzwidbl7azx0vqspuo8dyprwlvbqsy49vzjswvsjvh8";
 
 //セットデータ名
-var setData = ["kye_score","kye_downcount","kye_misscount", dummy_1, dummy_2];
+var setData = ["kye_score","kye_downcount","kye_misscount", "yvycc1exry378vzi6k3dsku3nvufc6jzj2tz6ju6l7yyxc60jclhd55mys4xm3uq7pdd60d8hw48mqfkoposgq", "ztb0ubhatdarkngezuhvz8qr66wysyhf9g8qc9vqct1dzwidbl7azx0vqspuo8dyprwlvbqsy49vzjswvsjvh8"];
 //データ送信用配列
 var postData = new Array();
 
