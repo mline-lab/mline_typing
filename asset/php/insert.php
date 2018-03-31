@@ -16,11 +16,11 @@
     include('encryption.php');
 
     //score復号化
-    $en_score = reqEncDec( $score, $decMode);
+    $dec_score = reqEncDec( $score, $decMode);
     //count復号化
-    $en_count = reqEncDec( $count, $decMode);
+    $dec_count = reqEncDec( $count, $decMode);
     //miss復号化
-    $en_miss  = reqEncDec( $miss, $decMode);
+    $dec_miss  = reqEncDec( $miss, $decMode);
 
     $name = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
     if ($name == "") {
@@ -30,6 +30,9 @@
     }
 
     echo "名前：".$name."登録完了</br>";
+    echo "score:".$dec_scorename."</br>";
+    echo "count:".$dec_count."</br>";
+    echo "miss:".$dec_miss."</br>";
 
     try
     {
@@ -40,9 +43,9 @@
 
         $stmt = $pdo -> prepare("INSERT INTO score (name, score, count, miss, mode) VALUES (:name, :score, :count, :miss, :mode)");
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':score', $en_score, PDO::PARAM_INT);
-        $stmt->bindParam(':count', $en_count, PDO::PARAM_INT);
-        $stmt->bindParam(':miss', $en_miss, PDO::PARAM_INT);
+        $stmt->bindParam(':score', $dec_score, PDO::PARAM_INT);
+        $stmt->bindParam(':count', $dec_count, PDO::PARAM_INT);
+        $stmt->bindParam(':miss', $dec_miss, PDO::PARAM_INT);
         $stmt->bindValue(':mode', 1, PDO::PARAM_INT);
 
         $stmt->execute();
