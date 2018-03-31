@@ -84,7 +84,7 @@ var dummy_2;
 var dummy_3;
 
 //セットデータ名
-var setData = ["kye_score","kye_downcount","kye_misscount", "yvycc1exry378vzi6k3dsku3nvufc6jzj2tz6ju6l7yyxc60jclhd55mys4xm3uq7pdd60d8hw48mqfkoposgq", "ztb0ubhatdarkngezuhvz8qr66wysyhf9g8qc9vqct1dzwidbl7azx0vqspuo8dyprwlvbqsy49vzjswvsjvh8","lwuec6xfgpsr3whw3o7pn5dkhsdycm47ytjel6e6hgd7qne3dswthai2epd6y63m5zqe6bcoee04g34mbphp3m"];
+var setData = ["key_score","key_downcount","key_misscount", "yvycc1exry378vzi6k3dsku3nvufc6jzj2tz6ju6l7yyxc60jclhd55mys4xm3uq7pdd60d8hw48mqfkoposgq", "ztb0ubhatdarkngezuhvz8qr66wysyhf9g8qc9vqct1dzwidbl7azx0vqspuo8dyprwlvbqsy49vzjswvsjvh8","lwuec6xfgpsr3whw3o7pn5dkhsdycm47ytjel6e6hgd7qne3dswthai2epd6y63m5zqe6bcoee04g34mbphp3m"];
 //データ送信用配列
 var postData = new Array();
 
