@@ -30,7 +30,7 @@
     }
 
     echo "名前：".$name."登録完了</br>";
-    echo "score:".$dec_scorename."</br>";
+    echo "score:".$dec_score."</br>";
     echo "count:".$dec_count."</br>";
     echo "miss:".$dec_miss."</br>";
 
