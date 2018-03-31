@@ -1,12 +1,10 @@
 <?php
-    $kye_dummy_1 = 'yvycc1exry378vzi6k3dsku3nvufc6jzj2tz6ju6l7yyxc60jclhd55mys4xm3uq7pdd60d8hw48mqfkoposgq';
-    $key_dummy_2 = "ztb0ubhatdarkngezuhvz8qr66wysyhf9g8qc9vqct1dzwidbl7azx0vqspuo8dyprwlvbqsy49vzjswvsjvh8";
     //データの受け取り
     $score   = $_POST['kye_score'];
     $count   = $_POST['kye_downcount'];
     $miss    = $_POST['kye_misscount'];
-    $dummy_1 = $_POST[$kye_dummy_1];
-    $dummy_2 = $_POST[$kye_dummy_2];
+    $dummy_1 = $_POST['yvycc1exry378vzi6k3dsku3nvufc6jzj2tz6ju6l7yyxc60jclhd55mys4xm3uq7pdd60d8hw48mqfkoposgq'];
+    $dummy_2 = $_POST['ztb0ubhatdarkngezuhvz8qr66wysyhf9g8qc9vqct1dzwidbl7azx0vqspuo8dyprwlvbqsy49vzjswvsjvh8'];
 
     //データが空の場合は不正なアクセスとみなす
     if(    ( $score   == '' )
