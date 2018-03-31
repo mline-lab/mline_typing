@@ -78,8 +78,12 @@ var username;
 //ポスト用変数
 var postObj;
 
+//dummy
+var dummy_1 = "yvycc1exry378vzi6k3dsku3nvufc6jzj2tz6ju6l7yyxc60jclhd55mys4xm3uq7pdd60d8hw48mqfkoposgq";
+var dummy_2 = "ztb0ubhatdarkngezuhvz8qr66wysyhf9g8qc9vqct1dzwidbl7azx0vqspuo8dyprwlvbqsy49vzjswvsjvh8";
+
 //セットデータ名
-var setData = ["kye_score","kye_downcount","kye_misscount"];
+var setData = ["kye_score","kye_downcount","kye_misscount", dummy_1, dummy_2];
 //データ送信用配列
 var postData = new Array();
 
@@ -252,7 +256,7 @@ function startTyping()
     countDown();
     timer1Sec = setInterval("countDown()", TIMEOUT_1SEC);
 }
-  
+
 
 /* -------------------- 出題表示処理 -------------------- */
 function nextWord()
@@ -286,7 +290,7 @@ function nextWord()
         typeArea2.textContent = textColor2;
     }
 }
-  
+
 /* -------------------- 制限時間カウントダウン -------------------- */
 function countDown() {
     console.log('制限時間カウントダウン:'+timeCount);
@@ -305,7 +309,7 @@ function countDown() {
         }
     }
 }
-  
+
 
 /* -------------------- commonfunc -------------------- */
 
@@ -320,7 +324,7 @@ function getCSV_jp_File()
     wordList_jp = xhr.responseText.split(";");
     };
 }
-  
+
 /* -------------------- 出題文字列ふりがな取得処理 -------------------- */
 function getCSV_hira_File()
 {
@@ -341,17 +345,17 @@ function stopTyping()
     clearInterval(timer1Sec);
     //ゲーム中フラグOFF
     gameFlg_stopPlay();
-  
+
     typeArea.textContent = "";
     typeArea2.textContent = "";
     wordArea_hiragana.textContent = "";
     wordArea_jp.textContent = "タイムアップ";
     time_area.textContent = "TIMEUP";
-  
+
     //ストップ処理遷移待ちタイムアウト
     setTimeout("stop_refresh()", TIMEOUT_1SEC);
 }
-  
+
 /* -------------------- ゲーム終了時処理 -------------------- */
 function stop_refresh()
 {
@@ -368,10 +372,10 @@ function stop_refresh()
     startButton.style.visibility = "visible";
 
     //ランキング登録画面表示
-    postData.push(score,downcount,missCount);
+    postData.push(score,downcount,missCount,dummy_1,dummy_2);
     popPostJump("./rankingAdd.html","ランキング登録",setData,postData);
 }
-  
+
 /* -------------------- ESCキーゲーム中断時処理 -------------------- */
 function esc()
 {
@@ -387,7 +391,7 @@ function esc()
     //スタートボタンクリック時処理へ遷移
     onStartButtonClick();
 }
-  
+
 /* -------------------- ランキング登録時処理 -------------------- */
 function popPostJump(_url, _win, _keys, _vals){
     $('#postjump').remove();
@@ -412,7 +416,7 @@ function popPostJump(_url, _win, _keys, _vals){
     $('#postjump').submit();
     $('#postjump').remove();
 }
-  
+
 /* -------------------- 入力文字変換処理 -------------------- */
 function moziHenkan(e)
 {
@@ -434,13 +438,13 @@ function moziHenkan(e)
     data[13] = shiftdown;
     data[14] = keydowntable1;
     data[15] = keydowntable2;
-  
+
     //正解判定する為にタイプ判定前の正解数を保持
     var tempseikai = seikaisuu;
-  
+
     //入力方法自動判別関数呼び出し、引数にはeと先ほど作ったdata配列を渡す。
     mojiretuhenkan(e, data);
-  
+
     //配列データを個々のデータに入れ直す
     jword = data[0];
     word = data[1];
@@ -458,7 +462,7 @@ function moziHenkan(e)
     shiftdown = data[13];
     keydowntable1 = data[14];
     keydowntable2 = data[15];
-  
+
     //ゲーム中かつ制限時間内か判定
     if (game_flag == NOWPLAY && timeCount >= TIMEUP) {
       //正当入力時処理
@@ -470,7 +474,7 @@ function moziHenkan(e)
       }
     }
 }
-  
+
 /* -------------------- 正当文字入力時処理 -------------------- */
 function hantei()
 {
@@ -484,7 +488,7 @@ function hantei()
       score_area.textContent = ('000' + score).slice(-4);
       //文字先頭位置カウントアップ
       charIndex++;
-  
+
       typeArea.textContent = typeArea.textContent + inputtype;
       textColor1 = ro_ma.substring(0, charIndex);
       textColor2 = ro_ma.substring(charIndex, ro_ma.length);
@@ -492,10 +496,10 @@ function hantei()
       typeArea.textContent = textColor1;
       //入力後の文字を表示
       typeArea2.textContent = textColor2;
-  
+
       //ノーミスカウントアップ
       gauge = gauge + 0.5;
-  
+
       //全文字打鍵時処理
       if (tableichi >= word.length)
       {
@@ -513,7 +517,7 @@ function hantei()
       }
     }
 }
-  
+
 /* -------------------- シフトキー入力チェック -------------------- */
 document.onkeyup = function(e)
 {
@@ -524,7 +528,7 @@ document.onkeyup = function(e)
         shiftdown = SET_CLR;
     }
 }
-  
+
 /* -------------------- キー入力チェック -------------------- */
 document.onkeydown = function(e)
 {
@@ -552,7 +556,7 @@ document.onkeydown = function(e)
         }
     }
 }
-  
+
 
 /* -------------------- ゲームプレイ中 -------------------- */
 function gameFlg_nowPlay()
