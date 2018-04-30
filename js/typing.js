@@ -534,6 +534,7 @@ document.onkeydown = function (e) {
         if (space_flag == ENABLE) {
             /* スペースキー打鍵時処理 */
             space_start();
+            return false; // <- 追加。ここでイベントのもみ消し
         }
     /* ESC */
     } else if (e.keyCode == 27) {
