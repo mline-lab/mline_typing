@@ -8,54 +8,24 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/game.css">
     <script src="js/jquery-3.2.1.min.js" charset="utf-8"></script>
-    <script src="js/key_list.js" charset="utf-8"></script>
-    <script src="js/typing.js" charset="utf-8"></script>
-    <script src="js/typing_lib.js" charset="utf-8"></script>
+    <script src="js/mouse_hover.js" charset="utf-8"></script>
 </head>
 
 <body>
     <!-- ▼wrapperー -->
     <div class="wrapper">
-        <div class="menu">
-            <p>メニュー</p>
-            <div class="item">
-                <span id="message">スタート</span>
-            </div>
-        </div>
-        <div class="word_area">
-            <p>ワード出現エリア</p>
-            <div class="font_area item">
-                <div style="font-weight: bold;" id="word_hiragana">ふりがな表示欄&nbsp;</div>
-                <div style="font-weight: bold;" id="word_jp">テキスト表示欄&nbsp;</div>
-                <div id="type">
-                    <span id="type_Before">アルファベット表示欄&nbsp;</span>
-                    <span id="type_After">&nbsp;</span>
-                </div>
-            </div>
-        </div>
-        <div class="main flex">
-            <div class="score">
-                <p>スコアエリア</p>
-                <div class="item">
-                    <span id="score_area">0000</span>
-                </div>
-            </div>
-            <div class="time">
-                <p>タイムエリア</p>
-                <div class="item">
-                    <span id="time_area">Sec.</span>
-                </div>
-            </div>
-            <div class="main_image">
-                <p>キャラクターエリア</p>
-                <div>
-                    <img id="character" src="asset/main_image/s_1.jpg">
-                </div>
-                <div class="item">
-                    <input type="button" class="button" id="start_button" value="Start" onClick="onStartButtonClick()">
-                </div>
-            </div>
-        </div>
+        <article>
+            <section class="production" id="p_flg">
+                <ul>
+                    <li class="sayuri">
+                        <a href="#" target="blank"><img src="asset/main_image/select_s_off.jpg" alt="喫茶さゆり"></a>
+                    </li>
+                    <li class="yosino">
+                        <a href="#" target="blank"><img src="asset/main_image/select_y_off.jpg" alt="roman cafe"></a>
+                    </li>
+                </ul>
+            </section>
+        </article>
     </div>
 </body>
 </html>
