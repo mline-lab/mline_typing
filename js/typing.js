@@ -346,7 +346,7 @@ function regRanking() {
 function getCSV_jp_File() {
     console.log('出題文字列取得処理');
     var xhr = new XMLHttpRequest();
-    xhr.open("get", "csv/word.csv", true);
+    xhr.open("get", "../csv/word.csv", true);
     xhr.send(null);
     xhr.onload = function () {
         wordList_jp = xhr.responseText.split(";");
@@ -359,7 +359,7 @@ function getCSV_jp_File() {
 function getCSV_hira_File() {
     console.log('出題文字列ふりがな取得処理');
     var xhr2 = new XMLHttpRequest();
-    xhr2.open("get", "csv/word_hiragana.csv", true);
+    xhr2.open("get", "../csv/word_hiragana.csv", true);
     xhr2.send(null);
     xhr2.onload = function () {
         wordList_hiragana = xhr2.responseText.split(";");
