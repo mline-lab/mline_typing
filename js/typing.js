@@ -338,7 +338,7 @@ function regRanking() {
     dummy_3 = missCount.toString(2);
     postData.push(score, downcount, missCount, dummy_1, dummy_2, dummy_3);
     /*  */
-    popPostJump("./rankingAdd.html", "ランキング登録", setData, postData);
+    popPostJump("../rankingAdd.html", "ランキング登録", setData, postData);
 }
 
 /* --------------------------- その他呼び出し処理 --------------------------- */
