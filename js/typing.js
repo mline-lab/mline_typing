@@ -322,6 +322,8 @@ function game_result() {
     /* 出題文字表示クリア */
     wordArea_hiragana.textContent = "";
     wordArea_jp.textContent       = "";
+    /* ランキング登録表示 */
+    regRanking();
     /* スタートボタン表示 */
     startButton.style.visibility = "visible";
 }
