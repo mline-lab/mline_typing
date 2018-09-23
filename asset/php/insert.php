@@ -45,7 +45,7 @@
 
     try
     {
-        $pdo = new PDO('mysql:host=localhost;dbname=typing;charset=utf8','mline','manaki079');
+        $pdo = new PDO('mysql:host=localhost;dbname=tona_tea;charset=utf8','mline','mline553500');
 
         //エラーをスロー
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

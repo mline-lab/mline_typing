@@ -1,8 +1,8 @@
 <?php
 
-    $dsn = 'mysql:dbname=typing;host=localhost';
+    $dsn = 'mysql:dbname=tona_tea;host=localhost';
     $user = 'mline';
-    $password = 'manaki079';
+    $password = 'mline553500';
     
     $rank = 0;
     
